@@ -57,7 +57,8 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 
 * Runs on Astro v4
 * Astro's <ViewTransitions /> integration
-* Leveraging components, props and scoped styles, as demonstrated by `/src/components/Landing.astro` for example
+* Leveraging components, props and scoped styles, as demonstrated in `/src/components/Landing.astro` for example
+* Leveraging Astro's built-in components such as `<Picture />`, as demonstrated in `/src/components/Landing.astro` for example
 
 This kit ships the following packages:
 * [Astro Icon](https://www.astroicon.dev/) - Astro Icon is a straightforward icon system for the Astro framework.

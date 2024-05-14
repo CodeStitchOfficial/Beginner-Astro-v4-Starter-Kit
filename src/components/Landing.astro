@@ -1,28 +1,21 @@
 ---
+import Picture from "astro/components/Picture.astro"
+import landingImage from "@assets/images/cabinets2.jpg"
 const { title } = Astro.props
 ---
 
 <section id="int-hero">
 <h1 id="home-h">{title}</h1>
-<picture>
-    <source
-    media="(max-width: 600px)"
-    srcset="/assets/images/cabinets2-m.jpg"
-    />
-    <source
-    media="(min-width: 601px)"
-    srcset="/assets/images/cabinets2.jpg"
-    />
-    <img
+<Picture 
+    src={landingImage}
+    formats={['avif', 'webp']} 
+    alt="A description of my image."
     aria-hidden="true"
     decoding="async"
-    src="/assets/images/cabinets2.jpg"
     alt="kitchen cabinets"
     loading="eager"
-    width="2500"
-    height="1667"
-    />
-</picture>
+/>
+
 </section>
 
 <style lang="less">
