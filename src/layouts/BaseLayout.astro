@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import fs from "fs";
 import client from "@data/client.json";
 import Header from "@components/Header.astro";
@@ -17,6 +18,9 @@ if (!isImageInPublic) {
 <!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
 <html lang="en">
         <head>
+            <!-- View Transitions support -->
+            <ViewTransitions />
+
             <!-- Standard meta tags -->
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,8 +56,8 @@ if (!isImageInPublic) {
             }
     
             <!-- Sitewide Scripts -->
-            <script defer src="/assets/js/nav.js"></script>
-            <script defer src="/assets/js/dark.js"></script>
+            <script defer src="/src/js/nav.js"></script>
+            <script defer src="/src/js/dark.js"></script>
       
             <!--For home page, use service keywords for the title, including location for SEO.
             Other pages should just include the page name.
