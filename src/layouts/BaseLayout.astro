@@ -54,26 +54,7 @@ if (!isImageInPublic) {
             <!-- Sitewide Scripts -->
             <script defer src="/assets/js/nav.js"></script>
             <script defer src="/assets/js/dark.js"></script>
-   
-            {Astro.url.pathname === "/" &&
-                <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-                <script defer>
-                if (window.netlifyIdentity) {
-                    window
-                        .netlifyIdentity
-                        .on('init', (user) => {
-                            if (!user) {
-                                window
-                                    .netlifyIdentity
-                                    .on('login', () => {
-                                        document.location.href = '/admin/';
-                                    });
-                            }
-                        });
-                }
-                </script> 
-            }
-    
+      
             <!--For home page, use service keywords for the title, including location for SEO.
             Other pages should just include the page name.
             
