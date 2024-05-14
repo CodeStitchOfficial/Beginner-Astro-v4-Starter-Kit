@@ -7,7 +7,7 @@
   <h3 align="center">Astro + LESS Starter Kit</h3>
 
   <p align="center">
-    This kit includes a pre-configured Astro setup, along with four pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as, but not limited to, View Transitions, Astro components, scoped styles etc.
+    This kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as, but not limited to, View Transitions, Astro components, scoped styles etc.
     <br/>
     <br/>
     <a href="https://codestitch-intermediate-astro.netlify.app">View Live Result</a>
@@ -17,7 +17,9 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Acknowledgments](#acknowledgments)
 - [Prerequisites](#prerequisites)
+- [Features](#features)
 - [File Structure](#fileStructure)
   - [Root Files and Folders](#rootFilesAndFolders)
   - [Source Files and Folders](#sourceFilesAndFolders)
@@ -26,34 +28,48 @@
   - [Reusing Code](#reusingCode)
   - [Adding More Pages](#addingMorePages)
   - [Navigation via Front Matter](#navigationViaFrontMatter)
-  - [Configuring the CMS](#configuringTheCms)
 - [Deployment](#deployment)
 
 <a name="overview"></a>
 
 ## Overview
 
-The intermediate starter kits build off the beginner kits, mainly by including a pre-configured <a href="https://www.astro.build">Astro</a> environment, which
+This beginner kit includes a pre-configured <a href="https://www.astro.build">Astro</a> environment, which
 allows for repeated components, centralized data and greater room to scale as your clients grow. 
 
 An example website has also been provided, with easy substitution of website sections possible through the use of <a href="https://codestitch.app/">CodeStitch's
 vanilla component library</a>. This kit aims to get any project off the ground in as little time as possible, with deployment being possible in as little as two
-minutes - including CMS hosting.
+minutes.
 
-This kit ships the following packages:
-* [Astro Icon](https://www.astroicon.dev/) - Astro Icon is a straightforward icon system for the Astro framework.
-* [Autoprefixer](https://www.npmjs.com/package/autoprefixer) - PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. It is recommended by Google and used in Twitter and Alibaba.
-* [LESS](https://www.npmjs.com/package/less) - Less makes a few convenient additions to the CSS language, but you can also simply write standard CSS if you wish.
+<a name="acknowledgments"></a>
+
+## Acknowledgments
+
+The author would like to acknowledge:
+* [Cedar Studios](https://github.com/cedar-studios) - Their [Intermediate-Astro-Kit-LESS](https://github.com/cedar-studios/Intermediate-Astro-Kit-LESS/tree/master) is the base of this template, which aims to improve on a few issues such as a breaking update to Astro v.4 due to outdated `astro-netlify-cms` integration.
+* [CodeStitch]("https://codestitch.app/") - Some of their free stitches were used in this template.
 
 <a name="prerequisites"></a>
 
 ## Prerequisites
 
-Only the vanilla web technologies are _required_ before using this kit, with some familiarity with Astro and Templating Languages also recommended, but not essential. A lot of the leg-work for the non-vanilla technologies has been done for you. If you would like to read up on some of these things, we recommend the following resources:
+Only the vanilla web technologies are _required_ before using this kit, with some familiarity with Astro and React-style Components and props also recommended, but not essential. A lot of the leg-work for the non-vanilla technologies has been done for you. If you would like to read up on some of these things, we recommend the following resources:
 
 1. [Astro's Documentation](https://docs.astro.build/en/getting-started/)
 2. [Astro Crash Course in 20 Minutes!](https://www.youtube.com/watch?v=zrPVTf761OI)
-3. [Decap CMS' docs](https://decapcms.org/docs/intro/) can also be found should you wish to extend the CMS beyond what's in this kit
+
+<a name="features"></a>
+
+## Features
+
+* Runs on Astro v4
+* Astro's <ViewTransitions /> integration
+* Leveraging components, props and scoped styles, as demonstrated by `/src/components/Landing.astro` for example
+
+This kit ships the following packages:
+* [Astro Icon](https://www.astroicon.dev/) - Astro Icon is a straightforward icon system for the Astro framework.
+* [Autoprefixer](https://www.npmjs.com/package/autoprefixer) - PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. It is recommended by Google and used in Twitter and Alibaba.
+* [LESS](https://www.npmjs.com/package/less) - Less makes a few convenient additions to the CSS language, but you can also simply write standard CSS if you wish.
 
 <a name="fileStructure"></a>
 
@@ -66,7 +82,6 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 |   |   |—— favicons/
 |   |   |—— fonts/
 |   |   |—— images/
-|   |   |—— js/
 |   |   └── svgs/
 |   |—— _redirects
 |   |—— robots.txt
@@ -80,6 +95,8 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 │   │   └── navData.json
 |   ├── js/
 |   |   └── util.js
+|   |   └── nav.js
+|   |   └── dark.js
 │   ├── layouts/
 │   │   └── BaseLayout.astro
 │   ├── pages/
@@ -145,6 +162,37 @@ used, componentization can be achieved through JSX-like syntax within .astro fil
 
 For example, there is a call to action at the bottom of most pages. As the text content or styles don't need to change, `<CTA />` was
 used. If this wasn't the case, and we wanted the CTA text to change, we'd start to think about passing props to `<CTA />`.
+
+An example of passing props to components is `Landing />`.
+
+In `about.astro`:
+
+```JS
+---
+// import the component
+import Landing from "@components/Landing.astro";
+---
+
+<BaseLayout
+  title="About"
+  description="Meta description for the page"
+  preloadImg="/assets/images/cabinets2.jpg"
+>
+  // Use the <Landing /> component
+  <Landing 
+    title="About Us" // pass a `title` prop to the component
+  />
+```
+
+In `Landing.astro`
+```JS
+---
+const { title } = Astro.props // Destructure the incoming props. Note the `Astrop.props` syntax
+---
+
+<h1 id="home-h">{title}</h1> // Consumme the title prop in the JSX markup
+
+```
 
 <a name="addingMorePages"></a>
 
