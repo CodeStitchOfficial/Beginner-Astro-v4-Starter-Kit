@@ -14,10 +14,5 @@
   {
     "key": "Reviews",
     "url": "/reviews/"
-  },
-  {
-    "key": "Blog",
-    "url": "/blog/",
-    "children": []
   }
 ]
