@@ -1,19 +1,13 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import fs from "fs";
 import client from "@data/client.json";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import "@styles/root.less";
 import "@styles/dark.less";
 
-const {description, title, preloadImg = ""} = Astro.props;
+const {description, title} = Astro.props;
 
-// Throws an error if the preloadImg is not in the public folder
-const isImageInPublic = fs.existsSync(`public${preloadImg}`);
-if (!isImageInPublic) {
-    throw new Error(`Preload image for ${Astro.url.origin + Astro.url.pathname} is not in /public/.`)
-}
 ---
 <!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
 <html lang="en">
@@ -44,19 +38,7 @@ if (!isImageInPublic) {
             <link rel="manifest" href="/assets/favicons/site.webmanifest">
             <meta name="msapplication-TileColor" content="#da532c">
             <meta name="theme-color" content="#ffffff">
-    
-            <!-- Preloads -->
-            <!-- <link rel="preload" as="image" href="/assets/svgs/logo-white.svg">
-            <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-regular.woff2" crossorigin>
-            <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/roboto-v29-latin-700.woff2" crossorigin> -->
-    
-            <!-- Preload an image - tag not rendered if preloadImg is blank to stop console errors -->
-            <!-- { (preloadImg) !== "" &&
-                <link rel="preload" as="image" href={preloadImg} />
-            }
-     -->
-
-      
+         
             <!--For home page, use service keywords for the title, including location for SEO.
             Other pages should just include the page name.
             
