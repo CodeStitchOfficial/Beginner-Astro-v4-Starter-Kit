@@ -4,10 +4,10 @@
     <img src="https://codestitch.app/frontend/images/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Intermediate Starter Kit (Astro + LESS)</h3>
+  <h3 align="center">Astro + LESS Starter Kit</h3>
 
   <p align="center">
-    Introducing the <em>un</em>-official intermediate starter kit, presented by CodeStitch. This kit includes a pre-configured Astro setup, along with a seamless integration of Decap CMS, providing an easy way to manage a blog. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing.
+    This kit includes a pre-configured Astro setup, along with four pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as, but not limited to, View Transitions, Astro components, scoped styles etc.
     <br/>
     <br/>
     <a href="https://codestitch-intermediate-astro.netlify.app">View Live Result</a>
@@ -34,13 +34,16 @@
 ## Overview
 
 The intermediate starter kits build off the beginner kits, mainly by including a pre-configured <a href="https://www.astro.build">Astro</a> environment, which
-allows for repeated components, centralized data and greater room to scale as your clients grow. On top of this, a blog has been provided through
-<a href="https://decapcms.org/">Decap CMS</a> to allow your clients to manage their content on their own. This can easily be adapted to anything which requires
-changing content, such as menus, job listing boards, portfolios and much more.
+allows for repeated components, centralized data and greater room to scale as your clients grow. 
 
 An example website has also been provided, with easy substitution of website sections possible through the use of <a href="https://codestitch.app/">CodeStitch's
 vanilla component library</a>. This kit aims to get any project off the ground in as little time as possible, with deployment being possible in as little as two
 minutes - including CMS hosting.
+
+This kit ships the following packages:
+* [Astro Icon](https://www.astroicon.dev/) - Astro Icon is a straightforward icon system for the Astro framework.
+* [Autoprefixer](https://www.npmjs.com/package/autoprefixer) - PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. It is recommended by Google and used in Twitter and Alibaba.
+* [LESS](https://www.npmjs.com/package/less) - Less makes a few convenient additions to the CSS language, but you can also simply write standard CSS if you wish.
 
 <a name="prerequisites"></a>
 
@@ -72,8 +75,6 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 |   ├── assets/
 |   |   └── images/
 |   ├── components/
-|   ├── content/
-|   |   └── blog/
 │   ├── _data/
 │   │   ├── client.json
 │   │   └── navData.json
@@ -82,9 +83,6 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 │   ├── layouts/
 │   │   └── BaseLayout.astro
 │   ├── pages/
-│    ├── blog/
-│   ├── content/
-│   │   └── blog/
 |   └── styles/
 ├── .astro.config.mjs
 ├── .postcss.config.cjs
@@ -105,7 +103,6 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 
 - data/ - Global data accessible across the project. Fill out client.json before you begin. Just import this data at the top of a file you want to include it.
 - assets/ - Non-HTML files. Images, scripts and styles.
-- content/ - Data to render pages from, such as the blog.
 - \_redirects - To configure redirects. Read more on <a href="https://docs.netlify.com/routing/redirects/">Netlify</a>
 - index.astro - Home page
 - robots.txt - Instructions for site crawlers. Learn more, and generate your own, <a href="https://en.ryte.com/free-tools/robots-txt-generator/">here</a>
@@ -120,14 +117,16 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 2. Follow the instructions to create a new repository, using this repo as a template.
 3. When created, clone the repository to your local machine.
 4. Run `npm install` to install all dependencies.
-5. Run `npm start` to start the project and spin up a development server on `localhost:8080`.
+5. Run `npm run dev` to start the project and spin up a development server on `localhost:4321`.
 
-Running `npm start` will start a development server, begin LESS preprocessing and start up the CMS (accessible by visiting the `/admin` path).
+Running `npm run dev` will start a development server and begin LESS preprocessing.
 
 Next, it is recommended to update `data/client.json` with some new information about this project. Through the power of templating, the
 project's `<head>` and contact information will automatically be filled out, providing a first peek into some of the benefits of SSGs.
 
-Finally, you can find all of CodeStitches `:root` variables, as well as .cs-topper, .cs-title and .cs-text, within the `root` stylesheet. Feel free to adjust these, or use our Content Flair micro-stitches, to update site-wide styles quickly.
+You can find all of CodeStitches `:root` variables, as well as .cs-topper, .cs-title and .cs-text, within the `root` stylesheet. Feel free to adjust these, or use our Content Flair micro-stitches, to update site-wide styles quickly.
+
+In the `components` folder live all your custom components in `.astro` formet. They take advantage of Astro's style-scoping. Any styles you write in `Header.astro` will not escape that file.
 
 <a name="expandingTheProject"></a>
 
@@ -174,8 +173,10 @@ rendering your pages.
 
 ### Navigation via navData.json
 
-The header navigation in the project is powered by the `navData.json` file. Each page in the navigation should be included as an item with a `key` property (page title to be displayed) and a `url` property (include a trailing slash). To add subpages, include a `children` property. The `children` property should be an array that contains more page objects (i.e., object containing a `key` and `url` property.) If a page has a `children` array property is specified, a dropdown will be created, providing
-a Navigation + Dropdown Stitch is being used. Navigations will render in order.
+The header navigation in the project is powered by the `navData.json` file. Each page in the navigation should be included as an item with a `key` property (page title to be displayed) and a `url` property (include a trailing slash). 
+
+To add subpages, include a `children` property. The `children` property should be an array that contains more page objects (i.e., object containing a `key` and `url` property.) If a page has a `children` array property is specified, a dropdown will be created, providing
+a Navigation + Dropdown Stitch is being used (see below). Navigations will render in order.
 
 > If you wish to use an alternative Navigation stitch, you are welcome to swap out the .cs-ul-wrapper div in the Stitch for the one in the Starter Kit. This
 > will allow you to continue to reap the benefits of eleventyNavigation. You can find the .cs-ul-wrapper div below
@@ -270,21 +271,6 @@ Below the front matter is the page content. Any code that should be sent to a la
 
 This code will be inserted into the `<slot />` component in BaseLayout.astro.
 
-<a name="configuringTheCms"></a>
-
-### Configuring the CMS
-
-Within `astro.config.mjs`, you'll find a `NetlifyCMS` object which contains the configuration for the blog. While this project is set up to work with a blog out of the box, you are welcome to make changes using
-<a href="https://decapcms.org/docs/add-to-your-site/#configuration">Decap CMS'</a> documentation.
-
-Blog content lives in `/src/content/blog` in the form of markdown files, with a front matter similar to that of the pages. MDX files can also be used if you want to include JSX components. The title, description, and tags are defined in the frontmatter of the markdown. The permalink will be the same as the file name.
-
-When `npm start` is run, a proxy server for the CMS is spun up on `localhost:8081`. That can often mean you run into errors if `localhost:8080` is already
-taken, so look out for that. You can locally access the blog via navigating to the /admin path. All blog content can be easily created, updated and deleted via
-this admin panel, and is the very system that your clients can use to manage their website without your involvement. Everything on the blog should be fairly
-intuitive, but feel free to experiment with using this panel first. With this kit, you can add _featured_ to the comma-separated list of tags to have them show
-up as so in the frontend.
-
 <a name="deployment"></a>
 
 ## Deployment
@@ -292,9 +278,4 @@ up as so in the frontend.
 1. Ensure the sitemap, robots.txt and \_redirects have been filled out. Instructions and tools for how to do so can be found in the File Structure section
 2. Navigate to your Netlify Admin Panel, click _Add new site | Import an existing project_
 3. Follow the instructions to connect your GitHub repository to Netlify.
-4. Once deployed, click on _Identity_ in the top navigation, then click _Enable Identity_
-5. Invite yourself, and the client, to the site
-6. While in the Identity tab, click the "Settings and usage" button to open the settings options. Then, do the following:
-   - Find "Registration Preferences", click "Edit Settings" and set registration from _Public_ to _Invite Only_
-   - Find "Enable Providers" and add a provider. We recommend Google, so the client can login with Google in 1 click.
-   - Find "Git Gateway" and enable it
+
