@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import client from "@data/client.json";
+import Landing from "@components/Landing.astro";
+
 ---
 
 <BaseLayout
@@ -12,28 +14,9 @@ import client from "@data/client.json";
   <!--                    LANDING                   -->
   <!-- ============================================ -->
 
-  <section id="int-hero">
-    <h1 id="home-h">Contact Us</h1>
-    <picture>
-      <source
-        media="(max-width: 600px)"
-        srcset="/assets/images/cabinets2-m.jpg"
-      />
-      <source
-        media="(min-width: 601px)"
-        srcset="/assets/images/cabinets2.jpg"
-      />
-      <img
-        aria-hidden="true"
-        decoding="async"
-        src="/assets/images/cabinets2.jpg"
-        alt="kitchen cabinets"
-        loading="eager"
-        width="2500"
-        height="1667"
-      />
-    </picture>
-  </section>
+  <Landing 
+    title="Contact"
+  />
 
   <!-- ============================================ -->
   <!--                Contact Form                  -->
