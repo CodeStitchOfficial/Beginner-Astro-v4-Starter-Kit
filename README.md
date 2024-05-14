@@ -1,18 +1,11 @@
-<br/>
-<p align="center">
-  <a href="https://codestitch.app/">
-    <img src="https://codestitch.app/frontend/images/icon.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Astro + LESS Starter Kit</h3>
+  <h3 align="center">Beginner Astro Starter Kit</h3>
 
   <p align="center">
-    This kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as, but not limited to, View Transitions, Astro components, scoped styles etc.
+    This beginner kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as, but not limited to, View Transitions, Astro components, scoped styling and scripting etc.
     <br/>
     <br/>
     <a href="https://codestitch-intermediate-astro.netlify.app">View Live Result</a>
   </p>
-</p>
 
 ## Table of Contents
 
@@ -47,7 +40,7 @@ minutes.
 
 The author would like to acknowledge:
 * [Cedar Studios](https://github.com/cedar-studios) - Their [Intermediate-Astro-Kit-LESS](https://github.com/cedar-studios/Intermediate-Astro-Kit-LESS/tree/master) is the base of this template, which aims to improve on a few issues such as a breaking update to Astro v.4 due to outdated `astro-netlify-cms` integration.
-* [CodeStitch]("https://codestitch.app/") - Some of their free stitches were used in this template.
+* [CodeStitch](https://codestitch.app/) - Some of their free stitches were used in this template.
 
 <a name="prerequisites"></a>
 
