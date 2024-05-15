@@ -23,6 +23,7 @@
   - [Navigation via Front Matter](#navigationViaFrontMatter)
   - [Built-in Astro components](#builtinastrocomponents)
 - [Deployment](#deployment)
+- [Conclusion](#conclusion)
 
 <a name="overview"></a>
 
@@ -331,3 +332,10 @@ Not demonstrated in this kit, `<Image />` and `<Icon />` components may be used 
 2. Navigate to your Netlify Admin Panel, click _Add new site | Import an existing project_
 3. Follow the instructions to connect your GitHub repository to Netlify.
 
+<a name="Conclusion"></a>
+
+## Conclusion
+I hope that this kit will prove useful to you. If you have any questions or would like to connect, feel free to reach out on [Twitter](https://twitter.com/BuckyBuck135) or at `buckybuck` on Discord.
+
+Happy coding!
+***Geoffrey***
