@@ -1,16 +1,18 @@
 ---
 import Picture from "astro/components/Picture.astro"
-import landingImage from "@assets/images/cabinets2.jpg"
+import landingImage from "@assets/images/cabinets2.jpg" // The asset must be imported from src
 const { title } = Astro.props
 ---
 
 <section id="int-hero">
 <h1 id="home-h">{title}</h1>
+
+<!-- standard <picture> attributes are supported. Set loading to lazy for assets below the fold -->
 <Picture 
     src={landingImage}
     formats={['avif', 'webp']} 
     alt="A description of my image."
-    aria-hidden="true"
+    aria-hidden="true" 
     decoding="async"
     alt="kitchen cabinets"
     loading="eager"
