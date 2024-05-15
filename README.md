@@ -1,10 +1,10 @@
-  <h3 align="center">Beginner Astro Starter Kit</h3>
+  <h3 align="center">Beginner Astro v4 Starter Kit</h3>
 
   <p align="center">
     This beginner kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as, but not limited to, View Transitions, Astro components, scoped styling and scripting etc.
     <br/>
     <br/>
-    <a href="https://codestitch-intermediate-astro.netlify.app">View Live Result</a>
+    <a href="https://beginner-astro-kit.netlify.app/" target="_blank">View Live Result</a>
   </p>
 
 ## Table of Contents
@@ -21,6 +21,7 @@
   - [Reusing Code](#reusingCode)
   - [Adding More Pages](#addingMorePages)
   - [Navigation via Front Matter](#navigationViaFrontMatter)
+  - [Built-in Astro components](#builtinastrocomponents)
 - [Deployment](#deployment)
 
 <a name="overview"></a>
@@ -28,7 +29,7 @@
 ## Overview
 
 This beginner kit includes a pre-configured <a href="https://www.astro.build">Astro</a> environment, which
-allows for repeated components, centralized data and greater room to scale as your clients grow. 
+allows for repeated components, centralized data and greater room to scale as your clients grow. The kit runs the latest major Astro version, v4.
 
 An example website has also been provided, with easy substitution of website sections possible through the use of <a href="https://codestitch.app/">CodeStitch's
 vanilla component library</a>. This kit aims to get any project off the ground in as little time as possible, with deployment being possible in as little as two
@@ -312,6 +313,15 @@ Below the front matter is the page content. Any code that should be sent to a la
 ```
 
 This code will be inserted into the `<slot />` component in BaseLayout.astro.
+
+<a name="builtinastrocomponents"></a>
+
+### Built-in Astro components: `<Image />` and `<Picture />`
+This kit demonstrates the use of the built-in `<Picture />` component, [for which you can read the documentation here](https://docs.astro.build/en/guides/images/#picture-). However, not all native HTML `<picture>` elements from CodeStitch blocks have been replaced with Astro's `<Picture />` components. CodeStich users will have to decide which one they want to use:
+ * CodeStich blocks already have fully-functionning `<picture>` elements that perform very well. However, the developper will have to do a time-consumming job with resizing and reformatting assets.
+ * Astro's `<Picture />` components must be manually written to replace stitches. On the other hand, they automatically process and optimize assets, which allows the developper to skip the resizing and reformatting preparation work.
+
+Not demonstrated in this kit, `<Image />` and `<Icon />` components may be used to further optimize your assets.
 
 <a name="deployment"></a>
 
