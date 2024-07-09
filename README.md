@@ -7,6 +7,10 @@
     <a href="https://beginner-astro-kit.netlify.app/" target="_blank">View Live Result</a>
   </p>
 
+  <p align="center">
+    Created and maintained by <a href="https://github.com/BuckyBuck135" target="_blank">BuckyBuck135</a>
+  </p>
+
 ## Table of Contents
 
 - [Overview](#overview)
