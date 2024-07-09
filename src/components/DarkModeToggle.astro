@@ -21,13 +21,18 @@
   </button>
 
   <script>
-    // Dark mode
+    // helper function to toggle aria-pressed
+    function ariaPressed(element) {
+    const isPressed = element.getAttribute('aria-pressed');
+    element.setAttribute('aria-pressed', isPressed === 'false' ? 'true' : 'false');
+}
+    // Creates the dark mode toggle event listener
     const setToggleListener = () => {
       const darkModeToggleButton = document.getElementById('dark-mode-toggle')
       const handleToggleClick = () => {
         
         document.body.classList.toggle("dark-mode");
-  
+        ariaPressed(darkModeToggleButton)
         const isDark = document.body.classList.contains("dark-mode");
         localStorage.setItem("theme", isDark ? "dark" : "light");
       };
