@@ -79,6 +79,8 @@ This kit ships the following packages:
 |   |   |—— fonts/
 |   |   |—— images/
 |   |   └── svgs/
+|   ├── js/
+|   |   └── nav.js
 |   |—— _redirects
 |   |—— robots.txt
 |   └── sitemap.html
@@ -86,20 +88,15 @@ This kit ships the following packages:
 |   ├── assets/
 |   |   └── images/
 |   ├── components/
-│   ├── _data/
+│   ├── data/
 │   │   ├── client.json
 │   │   └── navData.json
-|   ├── js/
-|   |   └── util.js
-|   |   └── nav.js
-|   |   └── dark.js
 │   ├── layouts/
 │   │   └── BaseLayout.astro
 │   ├── pages/
 |   └── styles/
 ├── .astro.config.mjs
-├── .postcss.config.cjs
-└── tsconfig.json
+└── .postcss.config.cjs
 ```
 
 <a name="rootFilesAndFolders"></a>
@@ -132,14 +129,11 @@ This kit ships the following packages:
 4. Run `npm install` to install all dependencies.
 5. Run `npm run dev` to start the project and spin up a development server on `localhost:4321`.
 
-Running `npm run dev` will start a development server and begin LESS preprocessing.
 
 Next, it is recommended to update `data/client.json` with some new information about this project. Through the power of templating, the
 project's `<head>` and contact information will automatically be filled out, providing a first peek into some of the benefits of SSGs.
 
 You can find all of CodeStitches `:root` variables, as well as .cs-topper, .cs-title and .cs-text, within the `root` stylesheet. Feel free to adjust these, or use our Content Flair micro-stitches, to update site-wide styles quickly.
-
-In the `components` folder live all your custom components in `.astro` formet. They take advantage of Astro's style-scoping. Any styles you write in `Header.astro` will not escape that file.
 
 <a name="expandingTheProject"></a>
 
