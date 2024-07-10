@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "astro": "^4.11.5",
-    "astro-icon": "^1.1.0",
     "autoprefixer": "^10.4.19",
     "less": "^4.2.0"
   }
