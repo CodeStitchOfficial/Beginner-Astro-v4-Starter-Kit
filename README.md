@@ -25,6 +25,7 @@
   - [Adding More Pages](#addingMorePages)
   - [Navigation via Front Matter](#navigationViaFrontMatter)
   - [Built-in Astro components](#builtinastrocomponents)
+  - [CSS](#css)
 - [Deployment](#deployment)
 - [Acknowledgments](#acknowledgments)
 - [Conclusion](#conclusion)
@@ -363,6 +364,15 @@ This kit demonstrates the use of the built-in `<Picture />` component, [for whic
  * CodeStich blocks already have fully-functionning `<picture>` elements that perform very well. However, the developper will have to do a time-consumming job with resizing and reformatting assets.
  * Astro's `<Picture />` components must be manually written to replace stitches. On the other hand, they automatically process and optimize assets, which allows the developper to skip the resizing and reformatting preparation work.
 
+<a name="css"></a>
+
+### CSS
+
+Most CSS will be written within the components it's styling via **scoping**. Scoped styles are compiled behind-the-scenes to only apply to HTML written inside of that same component. The CSS that you write inside of an Astro component is automatically encapsulated inside of that
+
+As this kit runs `less`, we use the `<style lang="less"></style> tags to write our scoped CSS.
+
+You can also use standalone `less` stylesheets, located in `src/styles`. Don't forget to import them in your component.
 
 <a name="deployment"></a>
 
