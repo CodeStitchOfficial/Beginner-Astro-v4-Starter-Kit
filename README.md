@@ -137,8 +137,6 @@ This behavior makes `public/` ideal for common assets like images and fonts, or 
 
 You can place CSS and JavaScript in your public/ directory, but be aware that those files will not be bundled or optimized in your final build.
 
-##### `public/admin`
-This folder contains `config/yml`, which is where Decap CMS configuration options lives. [More information about options in Decap docs](https://decapcms.org/docs/configuration-options/)
 
 #### `src/*`
 The `src/` folder is where most of your project source code lives. This includes:
