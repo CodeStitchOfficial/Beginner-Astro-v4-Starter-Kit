@@ -14,19 +14,19 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [Acknowledgments](#acknowledgments)
+- [Getting Started](#gettingStarted)
 - [Prerequisites](#prerequisites)
 - [Features](#features)
-- [File Structure](#fileStructure)
-  - [Root Files and Folders](#rootFilesAndFolders)
+- [Project Structure](#projectStructure)
+  - [Project Tree](#projectTree)
   - [Source Files and Folders](#sourceFilesAndFolders)
-- [Getting Started](#gettingStarted)
 - [Expanding the Project](#expandingTheProject)
   - [Reusing Code](#reusingCode)
   - [Adding More Pages](#addingMorePages)
   - [Navigation via Front Matter](#navigationViaFrontMatter)
   - [Built-in Astro components](#builtinastrocomponents)
 - [Deployment](#deployment)
+- [Acknowledgments](#acknowledgments)
 - [Conclusion](#conclusion)
 
 <a name="overview"></a>
@@ -40,13 +40,22 @@ An example website has also been provided, with easy substitution of website sec
 vanilla component library</a>. This kit aims to get any project off the ground in as little time as possible, with deployment being possible in as little as two
 minutes.
 
-<a name="acknowledgments"></a>
+<a name="gettingStarted"></a>
 
-## Acknowledgments
+## Getting Started
 
-The author would like to acknowledge:
-* [Cedar Studios](https://github.com/cedar-studios) - Their [Intermediate-Astro-Kit-LESS](https://github.com/cedar-studios/Intermediate-Astro-Kit-LESS/tree/master) is the base of this template, which aims to improve on a few issues such as a breaking update to Astro v.4 due to outdated `astro-netlify-cms` integration.
-* [CodeStitch](https://codestitch.app/) - Some of their free stitches were used in this template.
+1. At the top right of the <a href="https://github.com/ItsEthanH/intermediate-starter-less">GitHub Repository</a>, click the green _Use this template_ button,
+   then click _Create a new repository_.
+2. Follow the instructions to create a new repository, using this repo as a template.
+3. When created, clone the repository to your local machine.
+4. Run `npm install` to install all dependencies.
+5. Run `npm run dev` to start the project and spin up a development server on `localhost:4321`.
+
+
+Next, it is recommended to update `data/client.json` with some new information about this project. Through the power of templating, the
+project's `<head>` and contact information will automatically be filled out, providing a first peek into some of the benefits of SSGs.
+
+You can find all of CodeStitches `:root` variables, as well as .cs-topper, .cs-title and .cs-text, within the `root` stylesheet. Feel free to adjust these, or use our Content Flair micro-stitches, to update site-wide styles quickly.
 
 <a name="prerequisites"></a>
 
@@ -71,10 +80,19 @@ This kit ships the following packages:
 * [Autoprefixer](https://www.npmjs.com/package/autoprefixer) - PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. It is recommended by Google and used in Twitter and Alibaba.
 * [LESS](https://www.npmjs.com/package/less) - Less makes a few convenient additions to the CSS language, but you can also simply write standard CSS if you wish.
 
-<a name="fileStructure"></a>
+<a name="projectStructure"></a>
 
-## File Structure
+## Project Structure
 
+Astro leverages an opinionated folder layout for your project. Every Astro project root should include the following directories and files:
+* `src/*` - Your project source code (components, pages, styles, etc.)
+* `public/*` - Your non-code, unprocessed assets (fonts, icons, etc.)
+* `package.json` - A project manifest.
+* `astro.config.mjs` - An Astro configuration file. (recommended)
+
+<a name="projectTree"></a>
+
+### Project Tree
 ```
 .
 ├── public/
@@ -103,41 +121,68 @@ This kit ships the following packages:
 └── .postcss.config.cjs
 ```
 
-<a name="rootFilesAndFolders"></a>
-
-### Root Files and Folders
-
-- public/ - All assets you don't want optimized by Astro. Include fonts and favicons in here. The \_redirects, robots.txt, and sitemap.xml also live here.
-- src/ - Raw, source code. The folder you work in.
-- .astro.config.mjs - Astro config file, already set up for you.
-
 <a name="sourceFilesAndFolders"></a>
 
 ### Source Files and Folders
 
-- data/ - Global data accessible across the project. Fill out client.json before you begin. Just import this data at the top of a file you want to include it.
-- assets/ - Non-HTML files. Images, scripts and styles.
+#### `public/*`
+The `public/` directory is for files and assets in your project that do not need to be processed during Astro’s build process. The files in this folder will be copied into the build folder untouched, and then your site will be built.
+
+This behavior makes `public/` ideal for common assets like images and fonts, or special files such as`_redirects`, `robots.txt` and `sitemap.xml`.
+
 - \_redirects - To configure redirects. Read more on <a href="https://docs.netlify.com/routing/redirects/">Netlify</a>
-- index.astro - Home page
+- content/ - Data to render pages from, such as the blog.
 - robots.txt - Instructions for site crawlers. Learn more, and generate your own, <a href="https://en.ryte.com/free-tools/robots-txt-generator/">here</a>
 - sitemap.xml - A map of the pages on the domain. Create your own after deployment <a href="https://www.xml-sitemaps.com/">here</a>
 
-<a name="gettingStarted"></a>
+You can place CSS and JavaScript in your public/ directory, but be aware that those files will not be bundled or optimized in your final build.
 
-## Getting Started
+##### `public/admin`
+This folder contains `config/yml`, which is where Decap CMS configuration options lives. [More information about options in Decap docs](https://decapcms.org/docs/configuration-options/)
 
-1. At the top right of the <a href="https://github.com/ItsEthanH/intermediate-starter-less">GitHub Repository</a>, click the green _Use this template_ button,
-   then click _Create a new repository_.
-2. Follow the instructions to create a new repository, using this repo as a template.
-3. When created, clone the repository to your local machine.
-4. Run `npm install` to install all dependencies.
-5. Run `npm run dev` to start the project and spin up a development server on `localhost:4321`.
+#### `src/*`
+The `src/` folder is where most of your project source code lives. This includes:
+
+* Pages
+* Layouts
+* Astro components
+* UI framework components (React, etc.)
+* Styles (CSS, Sass)
+* Markdown
+
+Astro processes, optimizes, and bundles your src/ files to create the final website that is shipped to the browser. Unlike the static public/ directory, your src/ files are built and handled for you by Astro.
+
+##### `src/assets`
+Contains all assets you want optimized by Astro (such as assets used in `<Picture />` components for example) must be placed in `src`.
+
+`public/assets/images/blog` is where the images uploaded on the CMS will be stored.
+
+##### `src/components`
+Components are reusable units of code for your HTML pages. These could be Astro components, or UI framework components like React or Vue. It is common to group and organize all of your project components together in this folder.
+
+##### `src/data`
+This directory contains data files that are accessible within any template throughout the project. 
+* `client.js` holds some information you may wish to define for a client. It's important to fill this file out with the correct information for your client, as many HTML meta tags, the sitemap, and robots.txt all use data from this file.
+
+* `navData.json` holds data to create the navigation of your site. See more information in the [navigation via navData.json section](#navigationViaFrontMatter)
 
 
-Next, it is recommended to update `data/client.json` with some new information about this project. Through the power of templating, the
-project's `<head>` and contact information will automatically be filled out, providing a first peek into some of the benefits of SSGs.
+##### `src/layouts`
+Layouts are Astro components that define the UI structure shared by one or more pages. The `BaseLayout.astro` file acts as a giant wrapper for each individual page, where the content is injected through the `<slot /> `component.
 
-You can find all of CodeStitches `:root` variables, as well as .cs-topper, .cs-title and .cs-text, within the `root` stylesheet. Feel free to adjust these, or use our Content Flair micro-stitches, to update site-wide styles quickly.
+
+##### `src/pages`
+Pages are a special kind of component used to create new pages on your site. A page can be an Astro component, or a Markdown file that represents some page of content for your site.
+
+##### `src/styles`
+It is a common convention to store your CSS, Less or Sass files in a `src/styles` directory.
+
+#### `package.json` and `package-lock.json`
+The project's manifest. Standard NodeJS package files, containing the dependencies needed for the project to work.
+
+#### `node_modules/*`
+Created after you run `npm install`. This directory contains the code for all the dependencies that power this kit. It comes as standard with any NodeJS-powered project, much like the `package.json` and `package-lock.json` files. You can safely ignore this directory in your day-to-day work.
+
 
 <a name="expandingTheProject"></a>
 
@@ -262,7 +307,7 @@ a Navigation + Dropdown Stitch is being used (see below). Navigations will rende
 </div>
 ```
 
-> Should you wish to use your own method of rendering the navigation, you can still take advantage of applying the "active" class styles by using a smaller amount of code within the class attribute of the link:
+Should you wish to use your own method of rendering the navigation, you can still take advantage of applying the "active" class styles by using a smaller amount of code within the class attribute of the link:
 
 ```
 <li class="cs-li">
@@ -270,8 +315,9 @@ a Navigation + Dropdown Stitch is being used (see below). Navigations will rende
 </li>
 ```
 
-> In this case, if the page slug is "about", the .cs-active class will be applied. You're welcome to adjust the page slug value to whatever you require ("blog", "/", "services", etc)
-> For dropdowns, you can use a similar philosophy on the parent dropdown's class attribute, checking to see if any of the child pages are active before applying the styles. An example of this is shown below:
+In this case, if the page slug is "about", the .cs-active class will be applied. You're welcome to adjust the page slug value to whatever you require ("blog", "/", "services", etc)
+
+For dropdowns, you can use a similar philosophy on the parent dropdown's class attribute, checking to see if any of the child pages are active before applying the styles. An example of this is shown below:
 
 ```
 <li class="nav-link cs-li cs-dropdown">
@@ -301,7 +347,7 @@ a Navigation + Dropdown Stitch is being used (see below). Navigations will rende
 </li>
 ```
 
-> In the above example, we're checking to see if the active page slug matches any of the four that are listed (annapolis, bowie, severna or odenton) and applying the .cs-active style to the parent if it does.
+In the above example, we're checking to see if the active page slug matches any of the four that are listed (annapolis, bowie, severna or odenton) and applying the .cs-active style to the parent if it does.
 
 Below the front matter is the page content. Any code that should be sent to a layout should be enclosed in the layout's component:
 
@@ -320,7 +366,6 @@ This kit demonstrates the use of the built-in `<Picture />` component, [for whic
  * CodeStich blocks already have fully-functionning `<picture>` elements that perform very well. However, the developper will have to do a time-consumming job with resizing and reformatting assets.
  * Astro's `<Picture />` components must be manually written to replace stitches. On the other hand, they automatically process and optimize assets, which allows the developper to skip the resizing and reformatting preparation work.
 
-Not demonstrated in this kit, `<Image />` and `<Icon />` components may be used to further optimize your assets.
 
 <a name="deployment"></a>
 
@@ -330,6 +375,13 @@ Not demonstrated in this kit, `<Image />` and `<Icon />` components may be used 
 2. Navigate to your Netlify Admin Panel, click _Add new site | Import an existing project_
 3. Follow the instructions to connect your GitHub repository to Netlify.
 
+<a name="acknowledgments"></a>
+
+## Acknowledgments
+
+The author would like to acknowledge:
+* [Cedar Studios](https://github.com/cedar-studios) - Their [Intermediate-Astro-Kit-LESS](https://github.com/cedar-studios/Intermediate-Astro-Kit-LESS/tree/master) is the base of this template, which aims to improve on a few issues such as updates to Astro v4.
+* [CodeStitch](https://codestitch.app/) - Some of their free stitches were used in this template.
 <a name="Conclusion"></a>
 
 ## Conclusion
