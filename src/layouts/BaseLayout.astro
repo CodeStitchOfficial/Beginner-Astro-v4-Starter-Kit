@@ -12,9 +12,6 @@ const { description, title } = Astro.props;
 <!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
 <html lang="en">
   <head>
-    <!-- View Transitions support -->
-    <ViewTransitions />
-
     <!-- Standard meta tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,6 +75,8 @@ const { description, title } = Astro.props;
 </html>
 
 <script is:inline>
+  // Script to handle dark mode - it is inlined on purpose to avoid FOUC
+
   // helper functions to toggle dark mode
   function enableDarkMode() {
     document.body.classList.add("dark-mode");
@@ -111,5 +110,4 @@ const { description, title } = Astro.props;
 
   setTheme();
 
-  document.addEventListener("astro:after-swap", setTheme); // For View Transitions purposes - astro:after-swap ensures that the theme is kept after navigating to a new page.
 </script>
