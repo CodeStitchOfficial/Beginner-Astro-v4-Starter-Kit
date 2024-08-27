@@ -72,13 +72,8 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 ## Features
 
 * Runs on Astro v4
-* Astro's <ViewTransitions /> integration
 * Leveraging components, props and scoped styles, as demonstrated in `/src/components/Landing.astro` for example
 * Leveraging Astro's built-in components such as `<Picture />`, as demonstrated in `/src/components/Landing.astro` for example
-
-This kit ships the following packages:
-* [Autoprefixer](https://www.npmjs.com/package/autoprefixer) - PostCSS plugin to parse CSS and add vendor prefixes to CSS rules using values from Can I Use. It is recommended by Google and used in Twitter and Alibaba.
-* [LESS](https://www.npmjs.com/package/less) - Less makes a few convenient additions to the CSS language, but you can also simply write standard CSS if you wish.
 
 <a name="projectStructure"></a>
 
@@ -194,11 +189,22 @@ practices for when it comes to building on top of this kit:
 
 ### Reusing Code
 
-The main advantage to using an SSG is it brings components, popularized by JavaScript-heavy frameworks like React or Vue, to vanilla HTML. As Astro is being
-used, componentization can be achieved through JSX-like syntax within .astro files.
-
+The main advantage to using an SSG is it brings **components**, popularized by JavaScript-heavy frameworks like React or Vue, to vanilla HTML. As Astro is being used, componentization can be achieved through JSX-like syntax within .astro files.
+Components are located inside the `src/components` folder.
 For example, there is a call to action at the bottom of most pages. As the text content or styles don't need to change, `<CTA />` was
-used. If this wasn't the case, and we wanted the CTA text to change, we'd start to think about passing props to `<CTA />`.
+used. 
+To create a component, create a file in `src/components`. For example `src/components/CTA.astro`. Copy the HTML and CSS over from CodeStitch. Your component is now ready to use.
+Import it in the page where you need it: 
+```JSX
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/CTA.astro";
+---
+```
+
+And call it in the JSX markup with `<CTA />`.
+
+As the text content or styles don't need to change, a simple component was used. If this wasn't the case, and we wanted the CTA text to change, we'd start to think about passing props to `<CTA />`.
 
 An example of passing props to components is `Landing />`.
 
@@ -368,11 +374,11 @@ This kit demonstrates the use of the built-in `<Picture />` component, [for whic
 
 ### CSS
 
-Most CSS will be written within the components it's styling via **scoping**. Scoped styles are compiled behind-the-scenes to only apply to HTML written inside of that same component. The CSS that you write inside of an Astro component is automatically encapsulated inside of that
+Most CSS will be written within the components it's styling via **scoping**. Scoped styles are compiled behind-the-scenes to only apply to HTML written inside of that same component. The CSS that you write inside of an Astro component is automatically encapsulated inside of that.
 
-As this kit runs `less`, we use the `<style lang="less"></style> tags to write our scoped CSS.
+As this kit runs `less`, we can use the `<style lang="less"></style>` tags to write our nested CSS. If you prefer non-nested, traditional CSS you can use standard `<style></style>` tags in your `.astro` files.
 
-You can also use standalone `less` stylesheets, located in `src/styles`. Don't forget to import them in your component.
+You can also use standalone `less` or `.css` stylesheets, located in `src/styles`. Don't forget to import them in your component.
 
 <a name="deployment"></a>
 
