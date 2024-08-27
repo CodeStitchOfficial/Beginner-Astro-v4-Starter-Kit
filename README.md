@@ -1,7 +1,7 @@
   <h3 align="center">Beginner Astro v4 Starter Kit</h3>
 
   <p align="center">
-    This beginner kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as, but not limited to, View Transitions, Astro components, scoped styling and scripting etc.
+    This beginner kit includes a pre-configured Astro setup, along with five pages filled with CodeStitch components. Everything is ready to go right from the start, offering a fantastic introduction to the advantages of a Static Site Generator, complete with LESS preprocessing. This kit also leverages the power of a few Astro tools such as Astro components, scoped styling and scripting etc.
     <br/>
     <br/>
     <a href="https://beginner-astro-kit.netlify.app/" target="_blank">View Live Result</a>
