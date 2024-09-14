@@ -26,6 +26,8 @@
   - [Navigation via Front Matter](#navigationViaFrontMatter)
   - [Built-in Astro components](#builtinastrocomponents)
   - [CSS](#css)
+  - [Adding View Transitions](#addingViewTransitions)
+
 - [Deployment](#deployment)
 - [Acknowledgments](#acknowledgments)
 - [Conclusion](#conclusion)
@@ -80,7 +82,7 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 ## Project Structure
 
 Astro leverages an opinionated folder layout for your project. Every Astro project root should include the following directories and files:
-* `src/*` - Your project source code (components, pages, styles, etc.)
+* `src/*` - Your project source code (components, pages, styles, scripts etc.)
 * `public/*` - Your non-code, unprocessed assets (fonts, icons, etc.)
 * `package.json` - A project manifest.
 * `astro.config.mjs` - An Astro configuration file. (recommended)
@@ -96,14 +98,14 @@ Astro leverages an opinionated folder layout for your project. Every Astro proje
 |   |   |—— fonts/
 |   |   |—— images/
 |   |   └── svgs/
-|   ├── js/
-|   |   └── nav.js
 |   |—— _redirects
 |   |—— robots.txt
 |   └── sitemap.html
 ├── src/
 |   ├── assets/
 |   |   └── images/
+|   ├── js/
+|   |   └── nav.js
 |   ├── components/
 │   ├── data/
 │   │   ├── client.json
@@ -379,6 +381,44 @@ Most CSS will be written within the components it's styling via **scoping**. Sco
 As this kit runs `less`, we can use the `<style lang="less"></style>` tags to write our nested CSS. If you prefer non-nested, traditional CSS you can use standard `<style></style>` tags in your `.astro` files.
 
 You can also use standalone `less` or `.css` stylesheets, located in `src/styles`. Don't forget to import them in your component.
+
+<a name="addingViewTransitions"></a>
+
+### Adding View Transitions
+Opt in to using view transitions on individual pages by importing and adding the <ViewTransitions /> routing component to <head> in <BaseLayout />.
+
+```html
+---
+import { ViewTransitions } from 'astro:transitions';
+---
+<html lang="en">
+  <head>
+    <title>My Homepage</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <h1>Welcome to my website!</h1>
+  </body>
+</html>
+```
+
+#### Using scripts with View Transitions enabled
+When you add view transitions to an existing Astro project, some of your scripts may no longer re-run after page navigation like they did with full-page browser refreshes. 
+
+The <ViewTransition /> router fires a number of events on the document during navigation. These events provide hooks into the lifecycle of navigation, allowing you to do things like show indicators that a new page is loading, override default behavior, and restore state as navigation is completing.
+
+You can use the `astro:page-load` event to run code on every page navigation, for example to set up event listeners that would otherwise be lost during navigation.
+
+```js
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // This runs on first page load and after every navigation.
+    setupStuff(); // e.g. add event listeners
+  });
+</script>
+```
+
+For an in-depth explanation, please refer <a href="https://docs.astro.build/en/guides/view-transitions/#script-behavior-with-view-transitions">to the documentation.
 
 <a name="deployment"></a>
 
