@@ -3,14 +3,10 @@ import BaseLayout from "..//layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
 import Landing from "../components/Landing.astro";
 
+// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
+import {getOptimizedImage} from "../js/utils"
 import landingImage from "../assets/images/cabinets2.jpg" // The asset must be imported from src
-
-// using the getImage Astro function to optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import { getImage } from "astro:assets";
-const optimizedImage = await getImage({
-  src: landingImage,
-  format: "webp"
-});
+const optimizedImage = await getOptimizedImage(landingImage)
 ---
 
 <BaseLayout
