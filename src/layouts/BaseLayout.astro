@@ -1,12 +1,12 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import client from "../data/client.json";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/root.less";
 import "../styles/dark.less";
 
-const { description, title } = Astro.props;
+// Receiving and destructuring props from the .astro pages
+const { description, title, preloadedImage } = Astro.props;
 ---
 
 <!-- A fully fleshed-out <head>, dynamically changing based on client.json and the page front matter -->
@@ -19,6 +19,9 @@ const { description, title } = Astro.props;
     <meta name="description" content={description} />
     <meta name="keywords" content="" />
     <link rel="canonical" href={`https://${client.domain}${Astro.url.pathname}`} />
+    
+    <!-- Preloads the image passed as a prop -->
+    <link rel="preload" href={preloadedImage.src} as="image" />
 
     <!--Social Media Display-->
     <meta property="og:title" content={title} />
