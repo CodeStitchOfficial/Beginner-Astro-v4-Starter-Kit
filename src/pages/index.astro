@@ -1,11 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
+
+import { getImage } from "astro:assets";
+
+import image from "../assets/images/landing.jpg";
+const optimizedImage = await getImage({
+  src: image,
+  format: "webp",
+  width: 500, // resize optional
+  height: 500, // resize optional
+});
 ---
 
 <BaseLayout
   title="Pixel Perfect Websites"
   description="Meta description for the page"
+  preloadedImage = {optimizedImage}
 >
   <!-- ============================================ -->
   <!--                    Hero                      -->
@@ -46,7 +57,7 @@ allows for repeated components, centralized data and greater room to scale as yo
       <img
         aria-hidden="true"
         decoding="async"
-        src="/assets/images/landing.jpg"
+        src={optimizedImage.src}
         alt="new home"
         width="2500"
         height="1667"
