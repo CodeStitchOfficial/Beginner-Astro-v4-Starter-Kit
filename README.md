@@ -25,6 +25,7 @@
   - [Adding More Pages](#addingMorePages)
   - [Navigation via Front Matter](#navigationViaFrontMatter)
   - [Built-in Astro components](#builtinastrocomponents)
+  - [Preloading Images](#preloadingimages)
   - [CSS](#css)
   - [Adding View Transitions](#addingViewTransitions)
 
@@ -219,13 +220,12 @@ import Landing from "@components/Landing.astro";
 ---
 
 <BaseLayout
-  title="About"
-  description="Meta description for the page"
-  preloadImg="/assets/images/cabinets2.jpg"
+  // props
 >
   // Use the <Landing /> component
   <Landing 
     title="About Us" // pass a `title` prop to the component
+    image={optimizedImage} // pass an 'image' prop to the component
   />
 ```
 
@@ -371,6 +371,25 @@ This code will be inserted into the `<slot />` component in BaseLayout.astro.
 This kit demonstrates the use of the built-in `<Picture />` component, [for which you can read the documentation here](https://docs.astro.build/en/guides/images/#picture-). However, not all native HTML `<picture>` elements from CodeStitch blocks have been replaced with Astro's `<Picture />` components. CodeStich users will have to decide which one they want to use:
  * CodeStich blocks already have fully-functionning `<picture>` elements that perform very well. However, the developper will have to do a time-consumming job with resizing and reformatting assets.
  * Astro's `<Picture />` components must be manually written to replace stitches. On the other hand, they automatically process and optimize assets, which allows the developper to skip the resizing and reformatting preparation work.
+
+
+<a name="preloadingimages"></a>
+
+### Preloading images
+THis kit takes advantage of the [preload attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel/preload) to fetch images above the fold with higher priority, resulting in improved performances and reducing flashes of unstyled content. Preloaded images are used on the index page for the hero image as well as on all other pages in the Landing component.
+
+You will notice this snippet at the top of every `.astro` page:
+
+```jsx
+---
+// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
+import {getOptimizedImage} from "../js/utils"
+import landingImage from "../assets/images/landing.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+const optimizedImage = await getOptimizedImage(landingImage)
+---
+```
+
+You only need to change the path of the asset you want to preload. The rest is managed behind the scenes.
 
 <a name="css"></a>
 
