@@ -28,6 +28,7 @@
   - [Preloading Images](#preloadingimages)
   - [CSS](#css)
   - [Adding View Transitions](#addingViewTransitions)
+  - [Adding Netlify Forms](#netlifyforms)
 
 - [Deployment](#deployment)
 - [Acknowledgments](#acknowledgments)
@@ -77,6 +78,7 @@ Only the vanilla web technologies are _required_ before using this kit, with som
 * Runs on Astro v4
 * Leveraging components, props and scoped styles, as demonstrated in `/src/components/Landing.astro` for example
 * Leveraging Astro's built-in components such as `<Picture />`, as demonstrated in `/src/components/Landing.astro` for example
+* Automatically generates `sitemap-index.xml` and `sitemap-0.xml` thanks to the [Astro Sitemap integration](https://docs.astro.build/en/guides/integrations-guide/sitemap/)
 
 <a name="projectStructure"></a>
 
@@ -101,7 +103,6 @@ Astro leverages an opinionated folder layout for your project. Every Astro proje
 |   |   └── svgs/
 |   |—— _redirects
 |   |—— robots.txt
-|   └── sitemap.html
 ├── src/
 |   ├── assets/
 |   |   └── images/
@@ -126,12 +127,11 @@ Astro leverages an opinionated folder layout for your project. Every Astro proje
 #### `public/*`
 The `public/` directory is for files and assets in your project that do not need to be processed during Astro’s build process. The files in this folder will be copied into the build folder untouched, and then your site will be built.
 
-This behavior makes `public/` ideal for common assets like images and fonts, or special files such as`_redirects`, `robots.txt` and `sitemap.xml`.
+This behavior makes `public/` ideal for common assets like images and fonts, or special files such as`_redirects` and `robots.txt`.
 
 - \_redirects - To configure redirects. Read more on <a href="https://docs.netlify.com/routing/redirects/">Netlify</a>
 - content/ - Data to render pages from, such as the blog.
-- robots.txt - Instructions for site crawlers. Learn more, and generate your own, <a href="https://en.ryte.com/free-tools/robots-txt-generator/">here</a>
-- sitemap.xml - A map of the pages on the domain. Create your own after deployment <a href="https://www.xml-sitemaps.com/">here</a>
+- robots.txt - Instructions for site crawlers. Make sure to replace `https://yourwebsite.com` with your actual site URL
 
 You can place CSS and JavaScript in your public/ directory, but be aware that those files will not be bundled or optimized in your final build.
 
@@ -439,11 +439,21 @@ You can use the `astro:page-load` event to run code on every page navigation, fo
 
 For an in-depth explanation, please refer <a href="https://docs.astro.build/en/guides/view-transitions/#script-behavior-with-view-transitions">to the documentation.
 
+<a name="netlifyforms"></a>
+
+### Adding Netlify Forms
+We recommend hosting your site on Netlify to enjoy some of their perks, like automatic form detection.
+
+Netlify’s serverless form handling allows you to manage forms without extra API calls or additional JavaScript. Once enabled, the built-in form detection feature allows our build system to automatically parse your HTML at deploy time, so there’s no need for you to make an API call or include extra JavaScript on your site.
+
+Learn how to set them up on [Netlify documentation](https://docs.netlify.com/forms/setup/)
+
+
 <a name="deployment"></a>
 
 ## Deployment
 
-1. Ensure the sitemap, robots.txt and \_redirects have been filled out. Instructions and tools for how to do so can be found in the File Structure section
+1. Ensure the astro.config.mjs, client.json, robots.txt and \_redirects have been filled out. 
 2. Navigate to your Netlify Admin Panel, click _Add new site | Import an existing project_
 3. Follow the instructions to connect your GitHub repository to Netlify.
 
