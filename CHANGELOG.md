@@ -6,7 +6,9 @@
 - Astro has been upgraded to v5.0
 
 #### What should I do on my fork?
-- Upgrade Astro and its dependencies with `npx @astrojs/upgrade`
+- Upgrade Astro and its dependencies
+  - Run `npx @astrojs/upgrade` in your terminal
+  - At the yellow warning, choose “Yes” to continue
 - Ensure that the other packages you may have added are up-to-date and compatible with Astro v5
 - Please refer to the [official Upgrade to v5 guide](https://docs.astro.build/en/guides/upgrade-to/v5/) if you run into any issues.
 
